@@ -2,11 +2,14 @@ package com.example.stockmanagementapp.ui.main.itemstock.addstock
 
 import android.content.Context
 import android.content.Intent
+import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import com.example.stockmanagementapp.R
 import com.example.stockmanagementapp.base.arch.BaseActivity
 import com.example.stockmanagementapp.data.local.room.entity.Stock
 import com.example.stockmanagementapp.databinding.ActivityAddStockBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
@@ -45,6 +48,13 @@ class AddStockActivity :
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        if (formMode == FORM_MODE_EDIT) {
+            menuInflater.inflate(R.menu.menu_top, menu)
+        }
+        return super.onCreateOptionsMenu(menu)
+    }
+
     override fun setBackButton() {
         supportActionBar?.title = "Manage Item Stock"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -54,6 +64,25 @@ class AddStockActivity :
         when (item.itemId) {
             android.R.id.home -> {
                 onBackPressed()
+            }
+            R.id.menu_delete -> {
+                MaterialAlertDialogBuilder(this).apply {
+                    setTitle("Delete Stock")
+                    setMessage("Do you want to delete this item stock?")
+                    setPositiveButton("Yes") { dialog, _ ->
+                        stock?.copy().apply {
+                            this?.let {
+                                getViewModel().deleteStock(it)
+                            }
+                        }
+                        dialog.dismiss()
+                        Toast.makeText(this@AddStockActivity, "Delete Success!", Toast.LENGTH_SHORT).show()
+                        finish()
+                    }
+                    setNegativeButton("No") { dialog, _ ->
+                        dialog.dismiss()
+                    }
+                }.create().show()
             }
         }
         return super.onOptionsItemSelected(item)

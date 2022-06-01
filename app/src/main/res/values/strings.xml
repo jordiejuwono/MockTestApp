@@ -12,4 +12,5 @@
     <string name="text_qty">Qty:</string>
     <string name="hint_enter_qty">Enter Quantity</string>
     <string name="text_confirm">Confirm</string>
+    <string name="title_delete">Delete</string>
 </resources>
