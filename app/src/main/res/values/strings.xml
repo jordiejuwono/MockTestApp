@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">StockManagementApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_stock_list">Stock List</string>
+    <string name="title_supplier">Supplier</string>
+    <string name="quantity_format">Qty: %s</string>
+    <string name="text_manage_stock">Manage Stock</string>
+    <string name="hint_item_name">Item Name</string>
+    <string name="text_supplier">Supplier:</string>
+    <string name="hint_enter_supplier">Enter Supplier Name</string>
+    <string name="text_qty">Qty:</string>
+    <string name="hint_enter_qty">Enter Quantity</string>
+    <string name="text_confirm">Confirm</string>
+</resources>
